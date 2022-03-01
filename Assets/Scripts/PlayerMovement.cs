@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
         // Create a collision box between the 2 elements. If colliding, return true
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
 
-
         if (Input.GetButtonDown("Jump"))
         {
             Debug.Log("JUMP");
