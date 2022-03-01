@@ -12,14 +12,15 @@ public class EnnemyPatrol : MonoBehaviour
 
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    // Start is called before the first frame update
+
+    public int DAMAGE_AMOUNT = 20;
+
     void Start()
     {
         destPoint = 0;
         target = waypoints[destPoint];
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 dir = target.position - transform.position;
@@ -55,6 +56,16 @@ public class EnnemyPatrol : MonoBehaviour
         else if (_xDir < -0.1f)
         {
             spriteRenderer.flipX = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.transform.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(DAMAGE_AMOUNT);
         }
     }
 }
