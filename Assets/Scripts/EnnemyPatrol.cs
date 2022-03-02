@@ -13,7 +13,7 @@ public class EnnemyPatrol : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
-    public int DAMAGE_AMOUNT = 20;
+    public int damageOnCollision;
 
     void Start()
     {
@@ -65,7 +65,7 @@ public class EnnemyPatrol : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(DAMAGE_AMOUNT);
+            playerHealth.TakeDamage(damageOnCollision);
         }
     }
 }

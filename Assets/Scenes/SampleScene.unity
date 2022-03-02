@@ -389,7 +389,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  isInvincible: 0
+  invincibilityBlinkingDelay: 0.15
+  invincibilityDuration: 5
   healthBar: {fileID: 1655446999}
+  spriteRenderer: {fileID: 366021817}
 --- !u!1 &403495652
 GameObject:
   m_ObjectHideFlags: 0
@@ -7743,7 +7747,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88925934, y: 0.14427137}
+  m_Size: {x: 0.63652515, y: 0.14427137}
   m_EdgeRadius: 0
 --- !u!1 &1399181861
 GameObject:
@@ -7858,7 +7862,7 @@ MonoBehaviour:
   - {fileID: 1626177777}
   animator: {fileID: 1507884577}
   spriteRenderer: {fileID: 1507884575}
-  DAMAGE_AMOUNT: 20
+  damageOnCollision: 20
 --- !u!61 &1507884574
 BoxCollider2D:
   m_ObjectHideFlags: 0
