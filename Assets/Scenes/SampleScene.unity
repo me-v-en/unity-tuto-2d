@@ -263,7 +263,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -391,7 +391,7 @@ MonoBehaviour:
   currentHealth: 0
   isInvincible: 0
   invincibilityBlinkingDelay: 0.15
-  invincibilityDuration: 5
+  invincibilityDuration: 2
   healthBar: {fileID: 1655446999}
   spriteRenderer: {fileID: 366021817}
 --- !u!1 &403495652
@@ -16015,7 +16015,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2704dbfc90407a142a3720cff125dedc, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
