@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,30 +10,51 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
     public bool isGrounded;
     public bool isFlipped;
-    public Transform groundCheckLeft;
-    public Transform groundCheckRight;
+
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask collisionLayers;
+
+    public float jumpInterval = 0.3f;
+    private bool canJump = true;
+
     private Vector3 velocity = Vector3.zero;
+
+
+    public int remainingJump;
+    public int maxJumpCount;
+
     public float SMOOTH_TIME = 0.05f;
     public float JUMP_FORCE = 300;
 
 
+    private void Start()
+    {
+        ResetJumpCount();
+    }
 
-
-    // Update is called once per frame
     void Update()
     {
-        // Create a collision box between the 2 elements. If colliding, return true
-        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
 
-        if (Input.GetButtonDown("Jump"))
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
+
+        if (canJump)
         {
-            Debug.Log("JUMP");
+
             if (isGrounded)
             {
-                isJumping = true;
+                ResetJumpCount();
             }
-        }
 
+            if (Input.GetButtonDown("Jump"))
+            {
+                if (remainingJump > 0)
+                {
+                    isJumping = true;
+                }
+            }
+
+        }
     }
     void FixedUpdate()
     {
@@ -55,7 +77,9 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping == true)
         {
             rb.AddForce(new Vector2(0f, JUMP_FORCE));
+            --remainingJump;
             isJumping = false;
+            StartCoroutine(setJumpInterval());
         }
     }
 
@@ -65,9 +89,27 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-        else if(_velocity < -0.1f)
+        else if (_velocity < -0.1f)
         {
             spriteRenderer.flipX = true;
         }
+    }
+
+    void ResetJumpCount()
+    {
+        remainingJump = maxJumpCount;
+    }
+
+    private IEnumerator setJumpInterval()
+    {
+        canJump = false;
+        yield return new WaitForSeconds(jumpInterval);
+        canJump = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }
