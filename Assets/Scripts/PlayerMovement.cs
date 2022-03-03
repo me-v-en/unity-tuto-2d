@@ -40,20 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (canJump)
         {
-
-            if (isGrounded)
-            {
-                ResetJumpCount();
-            }
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                if (remainingJump > 0)
-                {
-                    isJumping = true;
-                }
-            }
-
+            HandleJumpUpdate();
         }
     }
     void FixedUpdate()
@@ -71,16 +58,24 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(float _horizontalMovement)
     {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, SMOOTH_TIME);
-
         if (isJumping == true)
         {
+            // Reset the y axis of the velocity before jump
+            rb.velocity = new Vector3(rb.velocity.x, 0f);
             rb.AddForce(new Vector2(0f, JUMP_FORCE));
+
             --remainingJump;
+
             isJumping = false;
+
+            // Minimum interval between jumps
+            // Helps to prevent resetting the number of jumps in mid-air
             StartCoroutine(setJumpInterval());
         }
+
+        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
+        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, SMOOTH_TIME);
+ 
     }
 
     void FlipPlayer(float _velocity)
@@ -95,6 +90,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    void HandleJumpUpdate()
+    {
+
+        if (isGrounded)
+        {
+            ResetJumpCount();
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (remainingJump > 0)
+            {
+                isJumping = true;
+            }
+        }
+
+    }
     void ResetJumpCount()
     {
         remainingJump = maxJumpCount;
