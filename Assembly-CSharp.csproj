@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7BA89CAD-1B2F-89CD-1CF3-CCC3D600E76C}</ProjectGuid>
+    <ProjectGuid>{E6CD09E1-F0F8-1DB3-FEBA-0ADF2AA9025E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,6 +58,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\EnnemyPatrol.cs" />
+    <Compile Include="Assets\Scripts\DeathZone.cs" />
+    <Compile Include="Assets\Scripts\DontDestroyOnLoadScene.cs" />
+    <Compile Include="Assets\Scripts\SpawnPlayer.cs" />
     <Compile Include="Assets\Scripts\WeakSpot.cs" />
     <Compile Include="Assets\Scripts\PickUpObject.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
@@ -65,8 +68,6 @@
     <Compile Include="Assets\Scripts\LoadSpecificScene.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\DontDestroyOnLoadScene.cs" />
-    <Compile Include="Assets\SpawnPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
