@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\LoadSpecificScene.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Checkpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
